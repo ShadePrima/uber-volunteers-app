@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 
 import { colors, parameters } from "./src/global/styles";
+import HomeScreen from "./src/screens/HomeScreen";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Exampel</Text>
+      <HomeScreen />
     </View>
   );
 }
