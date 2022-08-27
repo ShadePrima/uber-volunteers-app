@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <View>
       <Text>This is my third project!</Text>
       <StatusBar style="auto" />
     </View>
