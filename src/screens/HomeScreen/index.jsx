@@ -60,6 +60,82 @@ const HomeScreen = () => {
             )}
           />
         </View>
+        <View style={styles.view3}>
+          <Text style={styles.text3}>Where to ?</Text>
+          <View style={styles.view4}>
+            <Icon
+              type="material-community"
+              name="clock-time-four"
+              color={colors.grey1}
+              size={26}
+            />
+            <Text style={{ marginLeft: 5 }}>Now</Text>
+            <Icon
+              type="material-community"
+              name="chevron-down"
+              color={colors.grey1}
+              size={26}
+            />
+          </View>
+        </View>
+
+        <View style={styles.view5}>
+          <View style={styles.view6}>
+            <View style={styles.view7}>
+              <Icon
+                type="material-community"
+                name="map-marker"
+                color={colors.black}
+                size={22}
+              />
+            </View>
+            <View>
+              <Text style={{ fontSize: 18, color: colors.black }}>
+                Razumovka
+              </Text>
+              <Text style={{ color: colors.grey3 }}>
+                This is Vladimir's home
+              </Text>
+            </View>
+          </View>
+
+          <View>
+            <Icon
+              type="material-community"
+              name="chevron-right"
+              color={colors.grey}
+              size={26}
+            />
+          </View>
+        </View>
+
+        <View style={{ ...styles.view5, borderBottomWidth: 0 }}>
+          <View style={styles.view6}>
+            <View style={styles.view7}>
+              <Icon
+                type="material-community"
+                name="map-marker"
+                color={colors.black}
+                size={22}
+              />
+            </View>
+            <View>
+              <Text style={{ fontSize: 18, color: colors.black }}>Baburka</Text>
+              <Text style={{ color: colors.grey3 }}>This is my home</Text>
+            </View>
+          </View>
+
+          <View>
+            <Icon
+              type="material-community"
+              name="chevron-right"
+              color={colors.grey}
+              size={26}
+            />
+          </View>
+        </View>
+
+        <Text style={styles.text4}>Around You</Text>
       </ScrollView>
       <StatusBar style="default" backgroundColor="#2058c0" translucent={true} />
     </View>
