@@ -1,10 +1,12 @@
-import { View, Text, ScrollView, Image } from "react-native";
+import { View, Text, ScrollView, Image, FlatList } from "react-native";
 import React from "react";
 
 import styles from "./styles";
 import { Icon } from "@rneui/themed";
 import { colors } from "../../global/styles";
 import { StatusBar } from "expo-status-bar";
+
+import { filterData } from "../../global/data";
 
 const HomeScreen = () => {
   return (
@@ -38,6 +40,25 @@ const HomeScreen = () => {
               />
             </View>
           </View>
+        </View>
+        <View>
+          <FlatList
+            numRow={4}
+            horizontal={true}
+            showHorizontalScrollIndicator={false}
+            data={filterData}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <View style={styles.card}>
+                <View style={styles.view2}>
+                  <Image style={styles.image2} source={item.image} />
+                </View>
+                <View>
+                  <Text style={styles.title}>{item.name}</Text>
+                </View>
+              </View>
+            )}
+          />
         </View>
       </ScrollView>
       <StatusBar style="default" backgroundColor="#2058c0" translucent={true} />
