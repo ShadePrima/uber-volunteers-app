@@ -34,7 +34,7 @@ export const colors = {
 
 export const parameters = {
   statusBarHeight: getStatusBarHeight(),
-  headerHeight: 70,
+  headerHeight: 50,
 
   styledButton: {
     backgroundColor: "#ff8c52",

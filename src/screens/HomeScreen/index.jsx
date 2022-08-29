@@ -1,14 +1,54 @@
-import { View, Text, ScrollView, Image, FlatList } from "react-native";
+import { StatusBar } from "expo-status-bar";
+
 import React from "react";
+import { View, Text, ScrollView, Image, FlatList } from "react-native";
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import * as Location from "expo-location";
 
 import styles from "./styles";
 import { Icon } from "@rneui/themed";
 import { colors } from "../../global/styles";
-import { StatusBar } from "expo-status-bar";
+import { mapStyle } from "../../global/mapStyle";
 
-import { filterData } from "../../global/data";
+import { filterData, carsAround } from "../../global/data";
 
 const HomeScreen = () => {
+  const [latlng, setLatLng] = React.useState({});
+  console.log(latlng, "homeScren first");
+
+  const checkPermission = async () => {
+    const hasPermission = await Location.requestForegroundPermissionsAsync();
+    if (hasPermission.status === "granted") {
+      const permission = await askPermission();
+      return permission;
+    }
+    return true;
+  };
+
+  const askPermission = async () => {
+    const permission = await Location.requestForegroundPermissionsAsync();
+    return permission.status === "granted";
+  };
+
+  const getLocation = async () => {
+    try {
+      const { granted } = await Location.requestForegroundPermissionsAsync();
+      if (!granted) return;
+      const {
+        coords: { latitude, longitude },
+      } = await Location.getCurrentPositionAsync();
+      setLatLng({ latitude: latitude, longitude: longitude });
+    } catch (err) {}
+  };
+
+  const _map = React.useRef(1);
+
+  React.useEffect(() => {
+    checkPermission();
+    getLocation();
+    // console.log(latlng);
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -41,6 +81,8 @@ const HomeScreen = () => {
             </View>
           </View>
         </View>
+
+        {/* Menu */}
         <View>
           <FlatList
             numRow={4}
@@ -60,6 +102,7 @@ const HomeScreen = () => {
             )}
           />
         </View>
+
         <View style={styles.view3}>
           <Text style={styles.text3}>Where to ?</Text>
           <View style={styles.view4}>
@@ -78,7 +121,6 @@ const HomeScreen = () => {
             />
           </View>
         </View>
-
         <View style={styles.view5}>
           <View style={styles.view6}>
             <View style={styles.view7}>
@@ -89,6 +131,8 @@ const HomeScreen = () => {
                 size={22}
               />
             </View>
+
+            {/* Places */}
             <View>
               <Text style={{ fontSize: 18, color: colors.black }}>
                 Razumovka
@@ -108,7 +152,6 @@ const HomeScreen = () => {
             />
           </View>
         </View>
-
         <View style={{ ...styles.view5, borderBottomWidth: 0 }}>
           <View style={styles.view6}>
             <View style={styles.view7}>
@@ -135,8 +178,42 @@ const HomeScreen = () => {
           </View>
         </View>
 
+        {/* Map */}
         <Text style={styles.text4}>Around You</Text>
+
+        <View
+          style={{
+            alignItems: "center",
+            justifyContent: "flex-end",
+          }}
+        >
+          <MapView
+            ref={_map}
+            provider={PROVIDER_GOOGLE}
+            style={styles.map}
+            customMapStyle={mapStyle}
+            showsUserLocation={true}
+            followsUserLocation={true}
+            initialRegion={{
+              ...carsAround[1],
+              latitudeDelta: 0.008,
+              longitudeDelta: 0.008,
+            }}
+          >
+            {carsAround.map((item, index) => (
+              <MapView.Marker coordinate={item} key={index.toString()}>
+                <Image
+                  source={require("../../../assets/carMarker.png")}
+                  style={styles.carsAround}
+                  resizeMode="cover"
+                />
+              </MapView.Marker>
+            ))}
+          </MapView>
+        </View>
+        <View style={{ height: 90 }}></View>
       </ScrollView>
+
       <StatusBar style="default" backgroundColor="#2058c0" translucent={true} />
     </View>
   );

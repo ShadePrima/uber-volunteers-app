@@ -18,13 +18,23 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.uber.volunteers.app",
+      "config": {
+        "googleMapsApiKey": "AIzaSyAFZdRRBDQVvcbi8FT4_HQfCqVPy6T6NVo"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.uber.volunteers.app",
+      "config":{
+        "googleMaps": {
+          "apiKey": "AIzaSyAFZdRRBDQVvcbi8FT4_HQfCqVPy6T6NVo"
+        }       
+      }      
     },
     "web": {
       "favicon": "./assets/favicon.png"
