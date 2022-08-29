@@ -1,14 +1,54 @@
-import { View, Text, ScrollView, Image, FlatList } from "react-native";
+import { StatusBar } from "expo-status-bar";
+
 import React from "react";
+import { View, Text, ScrollView, Image, FlatList } from "react-native";
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import * as Location from "expo-location";
 
 import styles from "./styles";
 import { Icon } from "@rneui/themed";
 import { colors } from "../../global/styles";
-import { StatusBar } from "expo-status-bar";
+import { mapStyle } from "../../global/mapStyle";
 
 import { filterData } from "../../global/data";
 
 const HomeScreen = () => {
+  const [latlng, setLatLng] = React.useState({});
+  console.log(latlng, "homeScren first");
+
+  const checkPermission = async () => {
+    const hasPermission = await Location.requestForegroundPermissionsAsync();
+    if (hasPermission.status === "granted") {
+      const permission = await askPermission();
+      return permission;
+    }
+    return true;
+  };
+
+  const askPermission = async () => {
+    const permission = await Location.requestForegroundPermissionsAsync();
+    return permission.status === "granted";
+  };
+
+  const getLocation = async () => {
+    try {
+      const { granted } = await Location.requestForegroundPermissionsAsync();
+      if (!granted) return;
+      const {
+        coords: { latitude, longitude },
+      } = await Location.getCurrentPositionAsync();
+      setLatLng({ latitude: latitude, longitude: longitude });
+    } catch (err) {}
+  };
+
+  const _map = React.useRef(1);
+
+  React.useEffect(() => {
+    checkPermission();
+    getLocation();
+    // console.log(latlng);
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -136,6 +176,17 @@ const HomeScreen = () => {
         </View>
 
         <Text style={styles.text4}>Around You</Text>
+
+        <View style={{ alignItems: "center", justifyContent: "center" }}>
+          <MapView
+            ref={_map}
+            provider={PROVIDER_GOOGLE}
+            style={styles.map}
+            customMapStyle={mapStyle}
+            showsUserLocation={true}
+            followsUserLocation={true}
+          ></MapView>
+        </View>
       </ScrollView>
       <StatusBar style="default" backgroundColor="#2058c0" translucent={true} />
     </View>
