@@ -1,13 +1,9 @@
+import "react-native-gesture-handler";
 import { StyleSheet, View } from "react-native";
-
-import HomeScreen from "./src/screens/HomeScreen";
+import RootNavigator from "./src/navigations/RootNavigator";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <HomeScreen />
-    </View>
-  );
+  return <RootNavigator />;
 }
 
 const styles = StyleSheet.create({

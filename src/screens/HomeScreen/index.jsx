@@ -51,18 +51,18 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.icon1}>
-          <Icon
-            type="material-community"
-            name="menu"
-            color={colors.white}
-            size={40}
-          />
-        </View>
-      </View>
-
       <ScrollView bounces={false}>
+        <View style={styles.header}>
+          <View style={styles.icon1}>
+            <Icon
+              type="material-community"
+              name="menu"
+              color={colors.white}
+              size={40}
+            />
+          </View>
+        </View>
+
         <View style={styles.home}>
           <Text style={styles.text1}>Travel usefully</Text>
           <View style={styles.view1}>
@@ -102,6 +102,8 @@ const HomeScreen = () => {
             )}
           />
         </View>
+
+        {/* Where to */}
 
         <View style={styles.view3}>
           <Text style={styles.text3}>Where to ?</Text>
@@ -211,7 +213,6 @@ const HomeScreen = () => {
             ))}
           </MapView>
         </View>
-        <View style={{ height: 90 }}></View>
       </ScrollView>
 
       <StatusBar style="default" backgroundColor="#2058c0" translucent={true} />
