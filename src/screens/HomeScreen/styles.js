@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   },
 
   map: {
-    height: 150,
+    height: 250,
     marginVertical: 0,
     width: SCREEN_WIDTH * 0.92,
   },
@@ -136,6 +136,7 @@ const styles = StyleSheet.create({
   icon1: { marginLeft: 10, marginTop: 5 },
 
   view8: { flex: 4, marginTop: -25 },
+
   carsAround: {
     width: 28,
     height: 14,

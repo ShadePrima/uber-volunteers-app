@@ -10,7 +10,7 @@ import { Icon } from "@rneui/themed";
 import { colors } from "../../global/styles";
 import { mapStyle } from "../../global/mapStyle";
 
-import { filterData } from "../../global/data";
+import { filterData, carsAround } from "../../global/data";
 
 const HomeScreen = () => {
   const [latlng, setLatLng] = React.useState({});
@@ -81,6 +81,8 @@ const HomeScreen = () => {
             </View>
           </View>
         </View>
+
+        {/* Menu */}
         <View>
           <FlatList
             numRow={4}
@@ -100,6 +102,7 @@ const HomeScreen = () => {
             )}
           />
         </View>
+
         <View style={styles.view3}>
           <Text style={styles.text3}>Where to ?</Text>
           <View style={styles.view4}>
@@ -118,7 +121,6 @@ const HomeScreen = () => {
             />
           </View>
         </View>
-
         <View style={styles.view5}>
           <View style={styles.view6}>
             <View style={styles.view7}>
@@ -129,6 +131,8 @@ const HomeScreen = () => {
                 size={22}
               />
             </View>
+
+            {/* Places */}
             <View>
               <Text style={{ fontSize: 18, color: colors.black }}>
                 Razumovka
@@ -148,7 +152,6 @@ const HomeScreen = () => {
             />
           </View>
         </View>
-
         <View style={{ ...styles.view5, borderBottomWidth: 0 }}>
           <View style={styles.view6}>
             <View style={styles.view7}>
@@ -175,9 +178,15 @@ const HomeScreen = () => {
           </View>
         </View>
 
+        {/* Map */}
         <Text style={styles.text4}>Around You</Text>
 
-        <View style={{ alignItems: "center", justifyContent: "center" }}>
+        <View
+          style={{
+            alignItems: "center",
+            justifyContent: "flex-end",
+          }}
+        >
           <MapView
             ref={_map}
             provider={PROVIDER_GOOGLE}
@@ -185,9 +194,26 @@ const HomeScreen = () => {
             customMapStyle={mapStyle}
             showsUserLocation={true}
             followsUserLocation={true}
-          ></MapView>
+            initialRegion={{
+              ...carsAround[1],
+              latitudeDelta: 0.008,
+              longitudeDelta: 0.008,
+            }}
+          >
+            {carsAround.map((item, index) => (
+              <MapView.Marker coordinate={item} key={index.toString()}>
+                <Image
+                  source={require("../../../assets/carMarker.png")}
+                  style={styles.carsAround}
+                  resizeMode="cover"
+                />
+              </MapView.Marker>
+            ))}
+          </MapView>
         </View>
+        <View style={{ height: 90 }}></View>
       </ScrollView>
+
       <StatusBar style="default" backgroundColor="#2058c0" translucent={true} />
     </View>
   );
