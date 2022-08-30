@@ -3,7 +3,7 @@ import { colors, parameters } from "../../global/styles";
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
+    flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginTop: 2,
-    marginBottom: 10,
+    marginBottom: 12,
     backgroundColor: colors.white,
     height: 30,
     zIndex: 10,
