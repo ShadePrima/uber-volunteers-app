@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 
   view1: {
     position: "absolute",
-    top: 25,
+    top: 32,
     left: 12,
     backgroundColor: colors.white,
     height: 40,

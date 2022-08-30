@@ -7,7 +7,7 @@ import styles from "./styles";
 import { Icon, Avatar } from "@rneui/themed";
 import { colors } from "../../global/styles";
 
-const RequestScreen = () => {
+const RequestScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.view1}>
@@ -46,9 +46,13 @@ const RequestScreen = () => {
           </View>
 
           <View>
-            <View style={styles.view6}>
-              <Text style={styles.text1}>From where ?</Text>
-            </View>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("DestinationScreen")}
+            >
+              <View style={styles.view6}>
+                <Text style={styles.text1}>From where ?</Text>
+              </View>
+            </TouchableOpacity>
 
             <View style={styles.view7}>
               <TouchableOpacity>
