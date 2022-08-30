@@ -1,7 +1,14 @@
 import { StatusBar } from "expo-status-bar";
 
 import React from "react";
-import { View, Text, ScrollView, Image, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 
@@ -12,7 +19,7 @@ import { mapStyle } from "../../global/mapStyle";
 
 import { filterData, carsAround } from "../../global/data";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const [latlng, setLatLng] = React.useState({});
   console.log(latlng, "homeScren first");
 
@@ -46,7 +53,6 @@ const HomeScreen = () => {
   React.useEffect(() => {
     checkPermission();
     getLocation();
-    // console.log(latlng);
   }, []);
 
   return (
@@ -68,9 +74,15 @@ const HomeScreen = () => {
           <View style={styles.view1}>
             <View style={styles.view8}>
               <Text style={styles.text2}>Benefit the volunteer movement</Text>
-              <View style={styles.button1}>
-                <Text style={styles.button1Text}>Ride with Uber</Text>
-              </View>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("RequestScreen");
+                }}
+              >
+                <View style={styles.button1}>
+                  <Text style={styles.button1Text}>Ride with Uber</Text>
+                </View>
+              </TouchableOpacity>
             </View>
 
             <View>
@@ -186,7 +198,7 @@ const HomeScreen = () => {
         <View
           style={{
             alignItems: "center",
-            justifyContent: "flex-end",
+            justifyContent: "center",
           }}
         >
           <MapView
@@ -212,6 +224,20 @@ const HomeScreen = () => {
               </MapView.Marker>
             ))}
           </MapView>
+        </View>
+
+        <View>
+          <MapView
+            provider={PROVIDER_GOOGLE}
+            style={styles.map}
+            customMapStyle={mapStyle}
+            initialRegion={{
+              latitude: 48.28423,
+              longitude: 24.548835,
+              latitudeDelta: 0.008,
+              longitudeDelta: 0.008,
+            }}
+          ></MapView>
         </View>
       </ScrollView>
 
