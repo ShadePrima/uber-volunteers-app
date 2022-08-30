@@ -1,7 +1,14 @@
 import { StatusBar } from "expo-status-bar";
 
 import React from "react";
-import { View, Text, ScrollView, Image, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 
@@ -12,7 +19,7 @@ import { mapStyle } from "../../global/mapStyle";
 
 import { filterData, carsAround } from "../../global/data";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const [latlng, setLatLng] = React.useState({});
   console.log(latlng, "homeScren first");
 
@@ -46,31 +53,36 @@ const HomeScreen = () => {
   React.useEffect(() => {
     checkPermission();
     getLocation();
-    // console.log(latlng);
   }, []);
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.icon1}>
-          <Icon
-            type="material-community"
-            name="menu"
-            color={colors.white}
-            size={40}
-          />
-        </View>
-      </View>
-
       <ScrollView bounces={false}>
+        <View style={styles.header}>
+          <View style={styles.icon1}>
+            <Icon
+              type="material-community"
+              name="menu"
+              color={colors.white}
+              size={40}
+            />
+          </View>
+        </View>
+
         <View style={styles.home}>
           <Text style={styles.text1}>Travel usefully</Text>
           <View style={styles.view1}>
             <View style={styles.view8}>
               <Text style={styles.text2}>Benefit the volunteer movement</Text>
-              <View style={styles.button1}>
-                <Text style={styles.button1Text}>Ride with Uber</Text>
-              </View>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("RequestScreen");
+                }}
+              >
+                <View style={styles.button1}>
+                  <Text style={styles.button1Text}>Ride with Uber</Text>
+                </View>
+              </TouchableOpacity>
             </View>
 
             <View>
@@ -102,6 +114,8 @@ const HomeScreen = () => {
             )}
           />
         </View>
+
+        {/* Where to */}
 
         <View style={styles.view3}>
           <Text style={styles.text3}>Where to ?</Text>
@@ -184,7 +198,7 @@ const HomeScreen = () => {
         <View
           style={{
             alignItems: "center",
-            justifyContent: "flex-end",
+            justifyContent: "center",
           }}
         >
           <MapView
@@ -211,7 +225,6 @@ const HomeScreen = () => {
             ))}
           </MapView>
         </View>
-        <View style={{ height: 90 }}></View>
       </ScrollView>
 
       <StatusBar style="default" backgroundColor="#2058c0" translucent={true} />
