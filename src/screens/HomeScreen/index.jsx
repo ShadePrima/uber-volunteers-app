@@ -225,20 +225,6 @@ const HomeScreen = ({ navigation }) => {
             ))}
           </MapView>
         </View>
-
-        <View>
-          <MapView
-            provider={PROVIDER_GOOGLE}
-            style={styles.map}
-            customMapStyle={mapStyle}
-            initialRegion={{
-              latitude: 48.28423,
-              longitude: 24.548835,
-              latitudeDelta: 0.008,
-              longitudeDelta: 0.008,
-            }}
-          ></MapView>
-        </View>
       </ScrollView>
 
       <StatusBar style="default" backgroundColor="#2058c0" translucent={true} />
