@@ -6,8 +6,35 @@ import MapComponent from "../../components/MapComponent";
 import styles from "./styles";
 import { Icon, Avatar } from "@rneui/themed";
 import { colors } from "../../global/styles";
+import { DestinationContext, OriginContext } from "../../contexts/contexts";
 
 const RequestScreen = ({ navigation }) => {
+  const { origin, dispatchOrigin } = React.useContext(OriginContext);
+  const [userOrigin, setUserOrigin] = React.useState({
+    latitude: origin.latitude,
+    longitude: origin.longitude,
+  });
+
+  const { destination, dispatchDestination } =
+    React.useContext(DestinationContext);
+  const [userDestination, setUserDestination] = React.useState({
+    latitude: destination.latitude,
+    longitude: destination.longitude,
+  });
+
+  console.log(userOrigin, "requestScreen");
+
+  React.useEffect(() => {
+    setUserOrigin({
+      latitude: origin.latitude,
+      longitude: origin.longitude,
+    });
+    setUserDestination({
+      latitude: destination.latitude,
+      longitude: destination.longitude,
+    });
+  }, [origin, destination]);
+
   return (
     <View style={styles.container}>
       <View style={styles.view1}>
@@ -74,7 +101,7 @@ const RequestScreen = ({ navigation }) => {
         </View>
       </View>
 
-      <MapComponent />
+      <MapComponent userOrigin={userOrigin} userDestination={userDestination} />
     </View>
   );
 };
