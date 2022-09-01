@@ -17,12 +17,12 @@ export default class MapComponent extends Component {
   }
 
   componentDidUpdate() {
-    setInterval(() => {
+    setTimeout(() => {
       if (this.props.userDestination.latitude != null) {
         this._map.current.fitToCoordinates(
           [this.props.userOrigin, this.props.userDestination],
           {
-            edgePadding: { top: 150, right: 50, left: 50, bottom: 200 },
+            edgePadding: { top: 150, right: 50, left: 50, bottom: 300 },
             animated: true,
           }
         );
