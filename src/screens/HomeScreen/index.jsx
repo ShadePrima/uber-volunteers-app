@@ -76,7 +76,7 @@ const HomeScreen = ({ navigation }) => {
               <Text style={styles.text2}>Benefit the volunteer movement</Text>
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate("RequestScreen");
+                  navigation.navigate("RequestScreen", { state: 0 });
                 }}
               >
                 <View style={styles.button1}>

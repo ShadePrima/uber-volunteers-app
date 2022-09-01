@@ -1,11 +1,16 @@
 import "react-native-gesture-handler";
-import { StyleSheet, View } from "react-native";
 import RootNavigator from "./src/navigations/RootNavigator";
+import {
+  DestinationContextProvider,
+  OriginContextProvider,
+} from "./src/contexts/contexts";
 
 export default function App() {
-  return <RootNavigator />;
+  return (
+    <DestinationContextProvider>
+      <OriginContextProvider>
+        <RootNavigator />
+      </OriginContextProvider>
+    </DestinationContextProvider>
+  );
 }
-
-const styles = StyleSheet.create({
-  container: {},
-});

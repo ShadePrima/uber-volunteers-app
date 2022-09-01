@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 
   view1: {
     position: "absolute",
-    top: 25,
+    top: 32,
     left: 12,
     backgroundColor: colors.white,
     height: 40,
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginTop: 2,
-    marginBottom: 10,
+    marginBottom: 12,
     backgroundColor: colors.white,
     height: 30,
     zIndex: 10,
@@ -56,3 +56,26 @@ const styles = StyleSheet.create({
 });
 
 export default styles;
+
+export const autoComplete = {
+  textInput: {
+    backgroundColor: colors.grey6,
+    height: 50,
+    borderRadius: 5,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    fontSize: 15,
+    flex: 1,
+    borderWidth: 1,
+    marginHorizontal: 15,
+  },
+  container: {
+    paddingTop: 20,
+    flex: 1,
+    backgroundColor: colors.white,
+  },
+
+  textInputContainer: {
+    flexDirection: "row",
+  },
+};

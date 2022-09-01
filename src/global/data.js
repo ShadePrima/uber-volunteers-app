@@ -6,15 +6,15 @@ export const filterData = [
 ];
 
 export const rideData = [
-  { street: "32 Olivia Rd", area: "Klipfontein 83-Ir,Boksburg", id: "0" },
-  { street: "Hughes Industrial Park", area: "Hughes,Boksburg", id: "1" },
+  { street: "Rozumovka", area: "This is Vladimir's home", id: "0" },
+  { street: "Baburka", area: "This is home", id: "1" },
   {
-    street: "32 Olivia Road",
-    area: " East Rand,Ekurhuleni,Gauteng,1459",
+    street: "Jabotinskogo",
+    area: " This is our office",
     id: "2",
   },
-  { street: "Total Boksburg", area: "35 Atlas Rd,Anderbolt,Boksburg", id: "3" },
-  { street: "179 8th Ave", area: "Bezuidenhout Valley,Johannesburg", id: "4" },
+  { street: "Different place", area: "Some diffetent address", id: "3" },
+  { street: "Different place", area: "Some diffetent address", id: "4" },
 ];
 
 export const carTypeData = [
